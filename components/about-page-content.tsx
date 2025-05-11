@@ -144,7 +144,7 @@ export function AboutPageContent() {
           >
             <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center mb-6 md:mb-0">
               <Image
-                src="/placeholder-user.jpg"
+                src="/founder_image.jpg"
                 alt="Vishal Manwani, Founder of Finverge Advisors"
                 width={180}
                 height={180}

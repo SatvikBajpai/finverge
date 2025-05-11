@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import type { ReactNode } from "react"
 import { Linkedin, Mail, MapPin } from "lucide-react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -91,6 +92,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </div>
           </footer>
         </div>
+        <SpeedInsights />
       </body>
     </html>
   )
