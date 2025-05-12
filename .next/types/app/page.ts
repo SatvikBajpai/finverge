@@ -1,4 +1,4 @@
-// File: /Users/satvikbajpai/Desktop/finverge/app/page.tsx
+// File: /Users/satvikbajpai/Documents/projects/finverge/app/page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

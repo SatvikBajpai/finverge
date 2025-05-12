@@ -17,14 +17,6 @@ interface Testimonial {
 export function TestimonialsContent() {
   const testimonials: Testimonial[] = [
     {
-      name: "Rahul Sharma",
-      role: "CEO, TechInnovate Solutions",
-      content:
-        "FinVerge's virtual CFO services have been instrumental in our growth. Their strategic financial guidance has helped us make informed decisions and optimize our resources.",
-      image: "/placeholder.svg?height=100&width=100",
-      rating: 5,
-    },
-    {
       name: "Priya Patel",
       role: "Founder, EcoGreen Startups",
       content:
@@ -41,10 +33,10 @@ export function TestimonialsContent() {
       rating: 5,
     },
     {
-      name: "Neha Gupta",
-      role: "Director, Innovative EdTech",
+      name: "Confidential",
+      role: "Founder, Dairy Tech Startup",
       content:
-        "The accounting and tax compliance services from FinVerge have been a game-changer for us. They've simplified our financial processes and ensured we're always compliant.",
+        "Finverge Advisors transformed our fundraising journey. After a year of rejections, their team built robust financial models and crafted a compelling growth narrative that finally convinced banks of our potential. Thanks to their expertise, we secured $500K in working capital at affordable rates with just 40% collateral. This funding has been a game-changer for our dairy tech startup, enabling us to scale and invest in growth. We highly recommend Finverge to any startup seeking strategic financial guidance.",
       image: "/placeholder.svg?height=100&width=100",
       rating: 5,
     },
