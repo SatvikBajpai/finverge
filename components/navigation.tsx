@@ -93,14 +93,6 @@ export function Navigation() {
               className={`transition-colors text-sm font-medium ${
                 scrolled || !isHomePage ? "text-[#1B365D] hover:text-[#E6A44E]" : "text-white hover:text-[#E6A44E]"
               }`}
-              href="/resources"
-            >
-              Resources
-            </Link>
-            <Link
-              className={`transition-colors text-sm font-medium ${
-                scrolled || !isHomePage ? "text-[#1B365D] hover:text-[#E6A44E]" : "text-white hover:text-[#E6A44E]"
-              }`}
               href="/testimonials"
             >
               Testimonials
@@ -148,12 +140,6 @@ export function Navigation() {
                   href="/insights"
                 >
                   Insights
-                </Link>
-                <Link
-                  className="text-white hover:text-[#E6A44E] transition-colors py-2 border-b border-white/10"
-                  href="/resources"
-                >
-                  Resources
                 </Link>
                 <Link
                   className="text-white hover:text-[#E6A44E] transition-colors py-2 border-b border-white/10"

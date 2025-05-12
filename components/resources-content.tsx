@@ -18,7 +18,7 @@ interface Resource {
   image?: string
 }
 
-export function ResourcesContent() {
+export function InsightsContent() {
   // Check if the screen is mobile-sized
   const isMobile = useMediaQuery("(max-width: 640px)")
 
