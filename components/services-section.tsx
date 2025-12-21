@@ -40,7 +40,7 @@ export function ServicesSection({ services }: ServicesSectionProps) {
   return (
     <section id="services-section" className="w-full py-24 md:py-32 relative overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900/50 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-50 dark:from-navy-900/50 to-background" />
 
       {/* Decorative orbs */}
       <div className="absolute top-1/3 -left-32 w-96 h-96 bg-amber-400/5 rounded-full blur-3xl" />
