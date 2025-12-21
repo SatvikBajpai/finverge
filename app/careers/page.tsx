@@ -7,12 +7,12 @@ export default function CareersPage() {
   return (
     <div className="flex flex-col min-h-screen pt-16">
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 bg-[#1B365D]">
+        <section className="w-full py-12 md:py-24 relative overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-white text-center">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-foreground text-center">
               Careers at FinVerge
             </h1>
-            <p className="mx-auto max-w-[700px] text-gray-300 md:text-xl text-center mt-4">
+            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl text-center mt-4">
               Join our team and help shape the future of financial services
             </p>
           </div>

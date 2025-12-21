@@ -34,59 +34,59 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
             <Navigation />
             <main className="flex-1">{children}</main>
-            <footer className="w-full py-12 bg-navy-900 dark:glass-nav border-t border-white/5">
+            <footer className="w-full py-12 glass-nav border-t border-border">
               <div className="container">
                 <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-white">About FinVerge</h4>
-                    <p className="text-sm text-white/60 leading-relaxed">
+                    <h4 className="text-lg font-semibold text-foreground">About FinVerge</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       Your Financial Partners In Growth. Empowering startups and SMEs with strategic financial solutions.
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-white">Office</h4>
-                    <div className="flex items-center text-sm text-white/60">
-                      <MapPin className="h-4 w-4 mr-3 text-amber-400" />
+                    <h4 className="text-lg font-semibold text-foreground">Office</h4>
+                    <div className="flex items-center text-sm text-muted-foreground">
+                      <MapPin className="h-4 w-4 mr-3 text-amber-500" />
                       <p>Delhi NCR</p>
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-white">Contact</h4>
-                    <div className="flex items-center text-sm text-white/60">
-                      <Mail className="h-4 w-4 mr-3 text-amber-400" />
+                    <h4 className="text-lg font-semibold text-foreground">Contact</h4>
+                    <div className="flex items-center text-sm text-muted-foreground">
+                      <Mail className="h-4 w-4 mr-3 text-amber-500" />
                       <p>contact@finvergeadvisors.com</p>
                     </div>
-                    <div className="flex items-center text-sm text-white/60">
-                      <Linkedin className="h-4 w-4 mr-3 text-amber-400" />
+                    <div className="flex items-center text-sm text-muted-foreground">
+                      <Linkedin className="h-4 w-4 mr-3 text-amber-500" />
                       <Link
                         href="https://www.linkedin.com/company/finvergeadvisors"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-amber-400 transition-colors"
+                        className="hover:text-amber-500 transition-colors"
                       >
                         linkedin.com/company/finvergeadvisors
                       </Link>
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-white">Legal</h4>
+                    <h4 className="text-lg font-semibold text-foreground">Legal</h4>
                     <ul className="space-y-3">
                       <li>
-                        <Link href="/privacy" className="text-sm text-white/60 hover:text-amber-400 transition-colors">
+                        <Link href="/privacy" className="text-sm text-muted-foreground hover:text-amber-500 transition-colors">
                           Privacy Policy
                         </Link>
                       </li>
                       <li>
-                        <Link href="/terms" className="text-sm text-white/60 hover:text-amber-400 transition-colors">
+                        <Link href="/terms" className="text-sm text-muted-foreground hover:text-amber-500 transition-colors">
                           Terms of Service
                         </Link>
                       </li>
                     </ul>
                   </div>
                 </div>
-                <div className="mt-10 pt-8 border-t border-white/10">
+                <div className="mt-10 pt-8 border-t border-border">
                   <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <p className="text-xs text-white/50">© 2025 FinVerge Advisors. All rights reserved.</p>
+                    <p className="text-xs text-muted-foreground">© 2025 FinVerge Advisors. All rights reserved.</p>
                     <div className="flex space-x-4">
                       <Link
                         href="https://www.linkedin.com/company/finvergeadvisors"
@@ -96,7 +96,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                         aria-label="LinkedIn"
                       >
                         <div className="glass-light p-2.5 rounded-full group-hover:bg-amber-400/20 transition-all duration-300 group-hover:shadow-glow">
-                          <Linkedin className="h-5 w-5 text-white/70 group-hover:text-amber-400 transition-colors" />
+                          <Linkedin className="h-5 w-5 text-foreground/70 group-hover:text-amber-500 transition-colors" />
                         </div>
                       </Link>
                     </div>
