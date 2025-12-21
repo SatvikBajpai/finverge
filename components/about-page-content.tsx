@@ -28,14 +28,14 @@ export function AboutPageContent() {
               <h2 className="text-3xl font-bold tracking-tight text-white">
                 Our <span className="gradient-text">Story</span>
               </h2>
-              <p className="text-white/70 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 Finverge Advisors was born from a deep understanding of the
                 unique financial challenges startups and SMEs face every day.
                 From managing unpredictable cash flows to scaling processes and
                 navigating complex tax and compliance regulations, these hurdles
                 often stand in the way of growth.
               </p>
-              <p className="text-white/70 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 It became clear that what these businesses needed went beyond
                 financial advice — they required a partner who could provide
                 on-ground execution, deliver strategic insights, and implement
@@ -82,14 +82,14 @@ export function AboutPageContent() {
               transition={{ duration: 0.6 }}
               className="space-y-6 order-1 lg:order-2"
             >
-              <p className="text-white/70 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 At Finverge Advisors, the mission is to build tech-driven,
                 scalable finance functions that act as true business enablers.
                 By combining deep financial expertise with technology, Finverge
                 helps businesses gain real-time insights, automate manual
                 processes, and make informed decisions that fuel growth.
               </p>
-              <p className="text-white/70 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 The team's experience spans working with leading startups across
                 industries like e-commerce, hospitality, and ed-tech, managing
                 sales and receivables worth over INR 500+ Cr annually,
@@ -121,7 +121,7 @@ export function AboutPageContent() {
               transition={{ duration: 0.6 }}
               className="space-y-6"
             >
-              <p className="text-white/70 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 Whether it's optimizing cash flows, simplifying tax compliance,
                 or preparing for investor conversations, Finverge Advisors
                 empowers founders to focus on building their businesses while a
@@ -172,13 +172,13 @@ export function AboutPageContent() {
             <div className="w-full md:w-2/3">
               <h2 className="text-2xl font-bold tracking-tight text-white mb-2">About the <span className="gradient-text">Founder</span></h2>
               <h3 className="text-lg font-semibold text-amber-400 mb-4">Vishal Manwani, CA</h3>
-              <p className="text-white/70 mb-3 leading-relaxed">
+              <p className="text-muted-foreground mb-3 leading-relaxed">
                 Vishal Manwani is a Chartered Accountant and seasoned finance professional with over five years of experience across diverse industries, including e-commerce, agritech, and hospitality. His expertise spans financial planning and analysis, cash flow management, compliance, and driving automation in finance operations.
               </p>
-              <p className="text-white/70 mb-3 leading-relaxed">
+              <p className="text-muted-foreground mb-3 leading-relaxed">
                 Vishal has worked closely with high-growth startups, managing receivables worth INR 50+ Cr and supporting fundraising efforts exceeding USD 500 million. His hands-on experience in optimizing financial processes, enhancing working capital efficiency, and leading tech-driven transformations has shaped the core philosophy of Finverge Advisors — to empower startups and SMEs with scalable, technology-driven finance solutions that enable growth.
               </p>
-              <p className="text-white/70 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 With a deep understanding of the unique challenges startups face, Vishal founded Finverge Advisors to bridge the gap between financial strategy and execution, offering founders the insights and support they need to navigate complex financial landscapes.
               </p>
             </div>
@@ -195,7 +195,7 @@ export function AboutPageContent() {
               <h2 className="text-3xl font-bold tracking-tight text-white text-center mb-8">
                 Our <span className="gradient-text">Mission</span>
               </h2>
-              <p className="text-white/70 text-center text-lg leading-relaxed">
+              <p className="text-muted-foreground text-center text-lg leading-relaxed">
                 To provide startups and SMEs with bespoke financial solutions
                 that enhance agility, efficiency, and strategic decision-making,
                 positioning the finance function as a catalyst for growth.
@@ -220,7 +220,7 @@ export function AboutPageContent() {
               <h2 className="text-3xl font-bold tracking-tight text-white text-center mb-8">
                 Our <span className="gradient-text">Vision</span>
               </h2>
-              <p className="text-white/70 text-center text-lg leading-relaxed">
+              <p className="text-muted-foreground text-center text-lg leading-relaxed">
                 To be the trusted financial partner for forward-thinking
                 businesses, recognized for transforming finance teams into
                 strategic enablers of scalability and long-term success.
@@ -246,7 +246,7 @@ export function AboutPageContent() {
           <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
             Our <span className="gradient-text">Presence</span>
           </h2>
-          <p className="text-white/70 mb-10 text-lg">
+          <p className="text-muted-foreground mb-10 text-lg">
             FinVerge Advisors is proudly based in Delhi NCR.
           </p>
           <div className="relative h-[400px] w-full max-w-4xl mx-auto glass-card overflow-hidden group">
@@ -258,7 +258,7 @@ export function AboutPageContent() {
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-navy-950/20 to-transparent flex items-end justify-center pb-10">
-              <h3 className="text-white text-2xl font-bold">Delhi NCR</h3>
+              <h3 className="text-foreground text-2xl font-bold">Delhi NCR</h3>
             </div>
           </div>
         </div>
