@@ -22,10 +22,10 @@ export function AboutSection() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
               About <span className="gradient-text">FinVerge</span>
             </h2>
-            <p className="text-white/70 text-lg leading-relaxed">
+            <p className="text-muted-foreground text-lg leading-relaxed">
               At FinVerge Advisors, we empower startups and SMEs to turn their
               finance functions into engines of growth. Leveraging technology
               and deep financial expertise, we deliver tailored solutions that

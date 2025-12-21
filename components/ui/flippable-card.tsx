@@ -47,12 +47,12 @@ export function FlippableCard({ title, description, icon: Icon, image, isFlipped
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/40 to-transparent flex items-center justify-center">
-                {Icon && <Icon className="h-14 w-14 text-white/90 drop-shadow-lg" />}
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-navy-900/20 dark:from-navy-950/90 dark:via-navy-950/40 to-transparent flex items-center justify-center">
+                {Icon && <Icon className="h-14 w-14 text-white dark:text-white/90 drop-shadow-lg" />}
               </div>
             </div>
             <div className="p-6 flex-grow flex flex-col justify-between">
-              <h3 className="text-xl font-semibold text-white mb-3">{title}</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-3">{title}</h3>
               <Button variant="glass" className="w-full mt-4">
                 Learn More
               </Button>
@@ -64,8 +64,8 @@ export function FlippableCard({ title, description, icon: Icon, image, isFlipped
         <Card className="absolute w-full h-full backface-hidden rotate-y-180 overflow-hidden glass-card border-amber-400/20">
           <CardContent className="p-8 h-full flex flex-col justify-between overflow-y-auto">
             <div>
-              <h3 className="text-xl font-semibold text-white mb-4">{title}</h3>
-              <p className="text-white/70 leading-relaxed">{description}</p>
+              <h3 className="text-xl font-semibold text-foreground mb-4">{title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{description}</p>
             </div>
             <Button variant="amber" className="w-full mt-6" asChild>
               <Link href="/contact">Contact Us</Link>
