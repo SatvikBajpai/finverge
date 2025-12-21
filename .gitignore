@@ -41,3 +41,4 @@ public/placeholder-*
 
 # Email signature files
 email_signature/
+.env.local

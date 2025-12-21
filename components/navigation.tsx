@@ -32,7 +32,7 @@ export function Navigation() {
   const navLinkClass = `relative transition-all duration-300 text-sm font-medium ${
     scrolled || !isHomePage
       ? "text-foreground/80 hover:text-amber-500"
-      : "text-foreground/70 hover:text-foreground"
+      : "text-white/70 hover:text-white"
   }`
 
   return (
@@ -57,7 +57,7 @@ export function Navigation() {
                   !scrolled && isHomePage ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
                 }`}
               >
-                <h1 className="text-lg sm:text-xl font-bold text-foreground whitespace-nowrap">Finverge Advisors</h1>
+                <h1 className="text-lg sm:text-xl font-bold text-white whitespace-nowrap">Finverge Advisors</h1>
               </motion.div>
 
               {/* Logo version with negative margin to pull it left */}
