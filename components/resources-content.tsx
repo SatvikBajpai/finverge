@@ -149,10 +149,10 @@ export function InsightsContent() {
     <>
       <div className="flex flex-col items-center space-y-4 text-center">
         <div className="space-y-2">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-            Financial Resources
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-foreground">
+            Financial <span className="gradient-text">Resources</span>
           </h1>
-          <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+          <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
             Access our comprehensive collection of financial handbooks, guides, and resources
           </p>
         </div>
@@ -206,15 +206,15 @@ export function InsightsContent() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-[#1B365D] text-white p-8 rounded-lg shadow-lg"
+          className="glass-card p-8 md:p-12"
         >
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-bold mb-4">Need Additional Resources?</h2>
-            <p className="text-gray-200 mb-6">
+            <h2 className="text-2xl font-bold mb-4 text-foreground">Need Additional <span className="gradient-text">Resources</span>?</h2>
+            <p className="text-muted-foreground mb-6">
               Our team is available to provide you with any additional information or resources you may need to make
               informed decisions about your financial strategy.
             </p>
-            <Button className="bg-[#E6A44E] hover:bg-[#E6A44E]/90 text-white" asChild>
+            <Button variant="amber" asChild>
               <Link href="/contact">Contact Our Team</Link>
             </Button>
           </div>
@@ -231,26 +231,26 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <Card className="h-full flex flex-col overflow-hidden">
-        <div className="relative h-48 w-full">
+      <Card className="h-full flex flex-col overflow-hidden glass-card border-white/10 hover:border-amber-400/30 transition-all duration-500 group">
+        <div className="relative h-48 w-full overflow-hidden">
           <Image
             src={resource.image || "/placeholder.svg?height=200&width=300"}
             alt={resource.title}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/40 to-transparent flex items-end p-4">
             <FileText className="h-8 w-8 text-white opacity-80" />
           </div>
         </div>
         <CardHeader>
-          <CardTitle className="text-xl text-[#1B365D]">{resource.title}</CardTitle>
+          <CardTitle className="text-xl text-foreground">{resource.title}</CardTitle>
         </CardHeader>
         <CardContent className="flex-grow">
-          <p className="text-gray-600 mb-4">{resource.description}</p>
+          <p className="text-muted-foreground mb-4">{resource.description}</p>
         </CardContent>
         <div className="p-4 pt-0 mt-auto">
-          <Button className="w-full bg-[#1B365D] hover:bg-[#1B365D]/90" asChild>
+          <Button variant="glass" className="w-full" asChild>
             <Link href={resource.link} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="mr-2 h-4 w-4" /> View Resource
             </Link>

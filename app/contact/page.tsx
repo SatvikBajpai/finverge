@@ -8,6 +8,9 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { ExternalLink } from "lucide-react"
 import Link from "next/link"
+import { motion } from "framer-motion"
+
+const MotionDiv = motion.div
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -17,24 +20,68 @@ export default function ContactPage() {
     phone: "",
     message: "",
   })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [touched, setTouched] = useState<Record<string, boolean>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null
     message: string
   }>({ type: null, message: "" })
 
+  const validateField = (name: string, value: string) => {
+    switch (name) {
+      case "firstName":
+      case "lastName":
+        return value.trim().length < 2 ? "Must be at least 2 characters" : ""
+      case "email":
+        return !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? "Invalid email address" : ""
+      case "phone":
+        return !/^\+?[\d\s\-()]{10,}$/.test(value) ? "Invalid phone number" : ""
+      case "message":
+        return value.trim().length < 10 ? "Message must be at least 10 characters" : ""
+      default:
+        return ""
+    }
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prevData) => ({ ...prevData, [name]: value }))
+
+    // Validate on change if field has been touched
+    if (touched[name]) {
+      const error = validateField(name, value)
+      setErrors((prev) => ({ ...prev, [name]: error }))
+    }
+  }
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setTouched((prev) => ({ ...prev, [name]: true }))
+    const error = validateField(name, value)
+    setErrors((prev) => ({ ...prev, [name]: error }))
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    // Validate all fields
+    const newErrors: Record<string, string> = {}
+    Object.keys(formData).forEach((key) => {
+      const error = validateField(key, formData[key as keyof typeof formData])
+      if (error) newErrors[key] = error
+    })
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      setTouched(Object.keys(formData).reduce((acc, key) => ({ ...acc, [key]: true }), {}))
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitStatus({ type: null, message: "" })
 
     try {
-      // Replace YOUR_FORMSPREE_FORM_ID with the actual form ID from Formspree
       const response = await fetch("https://formspree.io/f/meoaqdbk", {
         method: "POST",
         headers: {
@@ -45,7 +92,7 @@ export default function ContactPage() {
           email: formData.email,
           phone: formData.phone,
           message: formData.message,
-          _replyto: formData.email, // This will set the reply-to email address
+          _replyto: formData.email,
         }),
       })
 
@@ -53,7 +100,6 @@ export default function ContactPage() {
         throw new Error("Failed to send message")
       }
 
-      // Reset form on success
       setFormData({
         firstName: "",
         lastName: "",
@@ -61,6 +107,8 @@ export default function ContactPage() {
         phone: "",
         message: "",
       })
+      setErrors({})
+      setTouched({})
 
       setSubmitStatus({
         type: "success",
@@ -80,42 +128,62 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col min-h-screen pt-16">
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 bg-[#1B365D] text-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Get in Touch</h1>
-              <p className="mx-auto max-w-[700px] text-gray-300 md:text-xl mt-4">
+        {/* Hero Section */}
+        <section className="w-full py-16 md:py-24 relative overflow-hidden">
+          <div className="absolute inset-0 gradient-mesh" />
+          <div className="absolute top-1/4 -left-32 w-80 h-80 bg-amber-400/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-amber-400/5 rounded-full blur-3xl" />
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <MotionDiv
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center"
+            >
+              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-white mb-4">
+                Get in <span className="gradient-text">Touch</span>
+              </h1>
+              <p className="mx-auto max-w-[700px] text-white/70 md:text-xl">
                 We're here to answer your questions and provide the financial guidance you need
               </p>
-            </div>
+            </MotionDiv>
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Form Section */}
+        <section className="w-full py-16 md:py-24 relative overflow-hidden">
+          <div className="absolute inset-0 gradient-section" />
+          <div className="absolute top-1/3 -right-32 w-80 h-80 bg-amber-400/5 rounded-full blur-3xl" />
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid gap-10 lg:grid-cols-2">
               {/* Contact Form */}
-              <div>
-                <Card className="border-0 shadow-lg">
-                  <CardContent className="p-6">
-                    <h2 className="text-2xl font-bold text-[#1B365D] mb-6">Send Us a Message</h2>
+              <MotionDiv
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Card className="glass-card border-white/10">
+                  <CardContent className="p-8">
+                    <h2 className="text-2xl font-bold text-white mb-8">Send Us a <span className="gradient-text">Message</span></h2>
 
                     {submitStatus.type && (
                       <div
-                        className={`mb-8 p-6 rounded-lg shadow-md text-center ${
+                        className={`mb-8 p-6 rounded-xl text-center ${
                           submitStatus.type === "success"
-                            ? "bg-gradient-to-r from-[#1B365D]/10 to-[#E6A44E]/10 border border-[#E6A44E]/20"
-                            : "bg-red-50 border border-red-200"
+                            ? "glass-card border-amber-400/30"
+                            : "glass-card border-red-500/30"
                         }`}
                         role="alert"
                         aria-live="polite"
                       >
                         <div className="flex flex-col items-center justify-center">
                           {submitStatus.type === "success" ? (
-                            <div className="w-16 h-16 bg-[#1B365D] rounded-full flex items-center justify-center mb-4">
+                            <div className="w-16 h-16 bg-gradient-to-r from-amber-400 to-amber-500 rounded-full flex items-center justify-center mb-4 shadow-glow">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="h-8 w-8 text-white"
+                                className="h-8 w-8 text-navy-950"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -143,26 +211,26 @@ export default function ContactPage() {
                           )}
                           <h3
                             className={`text-xl font-bold mb-2 ${
-                              submitStatus.type === "success" ? "text-[#1B365D]" : "text-red-700"
+                              submitStatus.type === "success" ? "text-amber-400" : "text-red-400"
                             }`}
                           >
                             {submitStatus.type === "success" ? "Thank You!" : "Something Went Wrong"}
                           </h3>
-                          <p className={submitStatus.type === "success" ? "text-gray-700" : "text-red-600"}>
+                          <p className={submitStatus.type === "success" ? "text-white/70" : "text-red-400/80"}>
                             {submitStatus.message}
                           </p>
                           {submitStatus.type === "success" && (
-                            <p className="text-gray-600 mt-2">Our team will get back to you shortly.</p>
+                            <p className="text-white/50 mt-2">Our team will get back to you shortly.</p>
                           )}
                         </div>
                       </div>
                     )}
 
-                    <form className="space-y-4" onSubmit={handleSubmit}>
+                    <form className="space-y-5" onSubmit={handleSubmit}>
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <label
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            className="text-sm font-medium text-white/80 mb-2 block"
                             htmlFor="first-name"
                           >
                             First Name
@@ -173,11 +241,18 @@ export default function ContactPage() {
                             required
                             value={formData.firstName}
                             onChange={handleChange}
+                            onBlur={handleBlur}
+                            className={`bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-amber-400/50 focus:ring-amber-400/20 ${
+                              touched.firstName && errors.firstName ? "border-red-400/50" : ""
+                            }`}
                           />
+                          {touched.firstName && errors.firstName && (
+                            <p className="text-red-400 text-xs mt-1">{errors.firstName}</p>
+                          )}
                         </div>
                         <div>
                           <label
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            className="text-sm font-medium text-white/80 mb-2 block"
                             htmlFor="last-name"
                           >
                             Last Name
@@ -188,12 +263,19 @@ export default function ContactPage() {
                             required
                             value={formData.lastName}
                             onChange={handleChange}
+                            onBlur={handleBlur}
+                            className={`bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-amber-400/50 focus:ring-amber-400/20 ${
+                              touched.lastName && errors.lastName ? "border-red-400/50" : ""
+                            }`}
                           />
+                          {touched.lastName && errors.lastName && (
+                            <p className="text-red-400 text-xs mt-1">{errors.lastName}</p>
+                          )}
                         </div>
                       </div>
                       <div>
                         <label
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                          className="text-sm font-medium text-white/80 mb-2 block"
                           htmlFor="email"
                         >
                           Email
@@ -205,11 +287,18 @@ export default function ContactPage() {
                           required
                           value={formData.email}
                           onChange={handleChange}
+                          onBlur={handleBlur}
+                          className={`bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-amber-400/50 focus:ring-amber-400/20 ${
+                            touched.email && errors.email ? "border-red-400/50" : ""
+                          }`}
                         />
+                        {touched.email && errors.email && (
+                          <p className="text-red-400 text-xs mt-1">{errors.email}</p>
+                        )}
                       </div>
                       <div>
                         <label
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                          className="text-sm font-medium text-white/80 mb-2 block"
                           htmlFor="phone"
                         >
                           Phone
@@ -221,27 +310,42 @@ export default function ContactPage() {
                           required
                           value={formData.phone}
                           onChange={handleChange}
+                          onBlur={handleBlur}
+                          className={`bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-amber-400/50 focus:ring-amber-400/20 ${
+                            touched.phone && errors.phone ? "border-red-400/50" : ""
+                          }`}
                         />
+                        {touched.phone && errors.phone && (
+                          <p className="text-red-400 text-xs mt-1">{errors.phone}</p>
+                        )}
                       </div>
                       <div>
                         <label
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                          className="text-sm font-medium text-white/80 mb-2 block"
                           htmlFor="message"
                         >
                           Message
                         </label>
                         <Textarea
-                          className="min-h-[150px]"
+                          className={`min-h-[150px] bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-amber-400/50 focus:ring-amber-400/20 ${
+                            touched.message && errors.message ? "border-red-400/50" : ""
+                          }`}
                           id="message"
                           name="message"
                           required
                           value={formData.message}
                           onChange={handleChange}
+                          onBlur={handleBlur}
                         />
+                        {touched.message && errors.message && (
+                          <p className="text-red-400 text-xs mt-1">{errors.message}</p>
+                        )}
                       </div>
                       <Button
                         type="submit"
-                        className="w-full bg-[#1B365D] hover:bg-[#1B365D]/90"
+                        variant="amber"
+                        className="w-full"
+                        size="lg"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? "Sending..." : "Send Message"}
@@ -249,21 +353,25 @@ export default function ContactPage() {
                     </form>
                   </CardContent>
                 </Card>
-              </div>
+              </MotionDiv>
 
-              {/* Company Brochure - Simple Version */}
-              <div>
-                <Card className="border-0 shadow-lg h-full">
-                  <CardContent className="p-6 flex flex-col h-full">
-                    <h2 className="text-2xl font-bold text-[#1B365D] mb-6">Company Brochure</h2>
+              {/* Company Brochure */}
+              <MotionDiv
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <Card className="glass-card border-white/10 h-full">
+                  <CardContent className="p-8 flex flex-col h-full">
+                    <h2 className="text-2xl font-bold text-white mb-6">Company <span className="gradient-text">Brochure</span></h2>
 
                     <div className="flex-grow flex flex-col justify-center">
-                      <p className="text-gray-600 mb-8">
+                      <p className="text-white/70 mb-8 leading-relaxed">
                         Learn more about our services, expertise, and how we can help your business grow by viewing our
                         company brochure.
                       </p>
 
-                      <Button size="lg" className="bg-[#1B365D] hover:bg-[#1B365D]/90 text-white self-center" asChild>
+                      <Button variant="glass" size="lg" className="self-center" asChild>
                         <Link
                           href="https://drive.google.com/file/d/1NKGsxA3DEYVJunXu6EBYof03MqtGbRr1/view?usp=drive_link"
                           target="_blank"
@@ -275,7 +383,7 @@ export default function ContactPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </div>
+              </MotionDiv>
             </div>
           </div>
         </section>
@@ -283,4 +391,3 @@ export default function ContactPage() {
     </div>
   )
 }
-

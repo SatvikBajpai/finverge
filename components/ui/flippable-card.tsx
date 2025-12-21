@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import type { LucideIcon } from "lucide-react"
 import { motion } from "framer-motion"
-import type React from "react" // Added import for React
+import type React from "react"
 
 interface FlippableCardProps {
   title: string
@@ -27,7 +27,7 @@ export function FlippableCard({ title, description, icon: Icon, image, isFlipped
       className="perspective-1000 w-full h-full cursor-pointer flippable-card"
       onClick={handleClick}
       animate={{
-        scale: isFlipped ? 1.05 : 1,
+        scale: isFlipped ? 1.02 : 1,
         transition: { duration: 0.3 },
       }}
     >
@@ -38,29 +38,36 @@ export function FlippableCard({ title, description, icon: Icon, image, isFlipped
         }}
       >
         {/* Front of the card */}
-        <Card className="absolute w-full h-full backface-hidden overflow-hidden">
+        <Card className="absolute w-full h-full backface-hidden overflow-hidden glass-card border-white/10 hover:border-amber-400/30 transition-all duration-500 group">
           <CardContent className="p-0 h-full flex flex-col justify-between">
-            <div className="relative h-48 w-full">
-              <Image src={image || "/placeholder.svg"} alt={title} fill className="object-cover" />
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                {Icon && <Icon className="h-16 w-16 text-white" />}
+            <div className="relative h-48 w-full overflow-hidden">
+              <Image
+                src={image || "/placeholder.svg"}
+                alt={title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/40 to-transparent flex items-center justify-center">
+                {Icon && <Icon className="h-14 w-14 text-white/90 drop-shadow-lg" />}
               </div>
             </div>
-            <div className="p-6 flex-grow">
-              <h3 className="text-xl font-bold text-[#1B365D] mb-2">{title}</h3>
-              <Button className="w-full bg-[#1B365D] hover:bg-[#1B365D]/90 mt-4">Learn More</Button>
+            <div className="p-6 flex-grow flex flex-col justify-between">
+              <h3 className="text-xl font-semibold text-white mb-3">{title}</h3>
+              <Button variant="glass" className="w-full mt-4">
+                Learn More
+              </Button>
             </div>
           </CardContent>
         </Card>
 
         {/* Back of the card */}
-        <Card className="absolute w-full h-full backface-hidden rotate-y-180 overflow-hidden">
-          <CardContent className="p-6 h-full flex flex-col justify-between overflow-y-auto">
+        <Card className="absolute w-full h-full backface-hidden rotate-y-180 overflow-hidden glass-card border-amber-400/20">
+          <CardContent className="p-8 h-full flex flex-col justify-between overflow-y-auto">
             <div>
-              <h3 className="text-xl font-bold text-[#1B365D] mb-4">{title}</h3>
-              <p className="text-gray-600">{description}</p>
+              <h3 className="text-xl font-semibold text-white mb-4">{title}</h3>
+              <p className="text-white/70 leading-relaxed">{description}</p>
             </div>
-            <Button className="w-full bg-[#1B365D] hover:bg-[#1B365D]/90 mt-4" asChild>
+            <Button variant="amber" className="w-full mt-6" asChild>
               <Link href="/contact">Contact Us</Link>
             </Button>
           </CardContent>
@@ -69,4 +76,3 @@ export function FlippableCard({ title, description, icon: Icon, image, isFlipped
     </motion.div>
   )
 }
-

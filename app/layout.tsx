@@ -6,6 +6,8 @@ import type { ReactNode } from "react"
 import { Linkedin, Mail, MapPin } from "lucide-react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
+import { ThemeProvider } from "@/components/theme-provider"
+import { ScrollToTop } from "@/components/scroll-to-top"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -17,86 +19,97 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <div className="flex flex-col min-h-screen">
-          <Navigation />
-          <main className="flex-1">{children}</main>
-          <footer className="w-full py-6 bg-[#1B365D] text-white">
-            <div className="container">
-              <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
-                <div className="space-y-4">
-                  <h4 className="text-lg font-semibold">About FinVerge</h4>
-                  <p className="text-sm text-gray-300">
-                    Your Financial Partners In Growth. Empowering startups and SMEs with strategic financial solutions.
-                  </p>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="text-lg font-semibold">Office</h4>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <MapPin className="h-4 w-4 mr-2 text-[#E6A44E]" />
-                    <p>Delhi NCR</p>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} min-h-screen`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange={false}
+        >
+          <div className="flex flex-col min-h-screen bg-background">
+            {/* Background gradient for dark mode */}
+            <div className="fixed inset-0 gradient-mesh dark:opacity-100 opacity-0 transition-opacity duration-500 -z-10" />
+            <div className="fixed inset-0 bg-white dark:opacity-0 opacity-100 transition-opacity duration-500 -z-10" />
+
+            <Navigation />
+            <main className="flex-1">{children}</main>
+            <footer className="w-full py-12 bg-navy-900 dark:glass-nav border-t border-white/5">
+              <div className="container">
+                <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-white">About FinVerge</h4>
+                    <p className="text-sm text-white/60 leading-relaxed">
+                      Your Financial Partners In Growth. Empowering startups and SMEs with strategic financial solutions.
+                    </p>
                   </div>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="text-lg font-semibold">Contact</h4>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Mail className="h-4 w-4 mr-2 text-[#E6A44E]" />
-                    <p>contact@finvergeadvisors.com</p>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-white">Office</h4>
+                    <div className="flex items-center text-sm text-white/60">
+                      <MapPin className="h-4 w-4 mr-3 text-amber-400" />
+                      <p>Delhi NCR</p>
+                    </div>
                   </div>
-                  <div className="flex items-center text-sm text-gray-300">
-                    <Linkedin className="h-4 w-4 mr-2 text-[#E6A44E]" />
-                    <Link
-                      href="https://www.linkedin.com/company/finvergeadvisors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-white transition-colors"
-                    >
-                      linkedin.com/company/finvergeadvisors
-                    </Link>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="text-lg font-semibold">Legal</h4>
-                  <ul className="space-y-2">
-                    <li>
-                      <Link href="/privacy" className="text-sm text-gray-300 hover:text-white">
-                        Privacy Policy
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-white">Contact</h4>
+                    <div className="flex items-center text-sm text-white/60">
+                      <Mail className="h-4 w-4 mr-3 text-amber-400" />
+                      <p>contact@finvergeadvisors.com</p>
+                    </div>
+                    <div className="flex items-center text-sm text-white/60">
+                      <Linkedin className="h-4 w-4 mr-3 text-amber-400" />
+                      <Link
+                        href="https://www.linkedin.com/company/finvergeadvisors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-amber-400 transition-colors"
+                      >
+                        linkedin.com/company/finvergeadvisors
                       </Link>
-                    </li>
-                    <li>
-                      <Link href="/terms" className="text-sm text-gray-300 hover:text-white">
-                        Terms of Service
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-white">Legal</h4>
+                    <ul className="space-y-3">
+                      <li>
+                        <Link href="/privacy" className="text-sm text-white/60 hover:text-amber-400 transition-colors">
+                          Privacy Policy
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/terms" className="text-sm text-white/60 hover:text-amber-400 transition-colors">
+                          Terms of Service
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-10 pt-8 border-t border-white/10">
+                  <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <p className="text-xs text-white/50">© 2025 FinVerge Advisors. All rights reserved.</p>
+                    <div className="flex space-x-4">
+                      <Link
+                        href="https://www.linkedin.com/company/finvergeadvisors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group transition-all duration-300"
+                        aria-label="LinkedIn"
+                      >
+                        <div className="glass-light p-2.5 rounded-full group-hover:bg-amber-400/20 transition-all duration-300 group-hover:shadow-glow">
+                          <Linkedin className="h-5 w-5 text-white/70 group-hover:text-amber-400 transition-colors" />
+                        </div>
                       </Link>
-                    </li>
-                  </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="mt-8 border-t border-gray-700 pt-8">
-                <div className="flex justify-between items-center">
-                  <p className="text-xs text-gray-300">© 2025 FinVerge Advisors. All rights reserved.</p>
-                  <div className="flex space-x-4">
-                    <Link
-                      href="https://www.linkedin.com/company/finvergeadvisors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group transition-transform hover:scale-110"
-                      aria-label="LinkedIn"
-                    >
-                      <div className="bg-white p-2 rounded-full group-hover:bg-[#E6A44E] transition-colors">
-                        <Linkedin className="h-5 w-5 text-[#1B365D] group-hover:text-white" />
-                      </div>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </footer>
-        </div>
-        <SpeedInsights />
-        <Analytics />
+            </footer>
+          </div>
+          <ScrollToTop />
+          <SpeedInsights />
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   )
 }
-

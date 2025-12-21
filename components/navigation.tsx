@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Menu } from "lucide-react"
 import { Logo } from "@/components/ui/logo"
 import { motion } from "framer-motion"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
@@ -28,13 +29,21 @@ export function Navigation() {
     }
   }, [scrolled])
 
+  const navLinkClass = `relative transition-all duration-300 text-sm font-medium ${
+    scrolled || !isHomePage
+      ? "text-foreground/80 hover:text-amber-500"
+      : "text-foreground/70 hover:text-foreground"
+  }`
+
   return (
     <motion.header
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled || !isHomePage ? "bg-white backdrop-blur-md shadow-md py-2 md:py-3" : "bg-transparent py-3 md:py-4"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled || !isHomePage
+          ? "glass-nav shadow-lg py-2 md:py-3"
+          : "bg-transparent py-4 md:py-5"
       }`}
     >
       <div className="w-full flex justify-between items-center px-4 sm:px-6 lg:px-8">
@@ -48,7 +57,7 @@ export function Navigation() {
                   !scrolled && isHomePage ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
                 }`}
               >
-                <h1 className="text-lg sm:text-xl font-bold text-white whitespace-nowrap">Finverge Advisors</h1>
+                <h1 className="text-lg sm:text-xl font-bold text-foreground whitespace-nowrap">Finverge Advisors</h1>
               </motion.div>
 
               {/* Logo version with negative margin to pull it left */}
@@ -64,42 +73,38 @@ export function Navigation() {
         </div>
 
         <div>
-          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            <Link
-              className={`transition-colors text-sm font-medium ${
-                scrolled || !isHomePage ? "text-[#1B365D] hover:text-[#E6A44E]" : "text-white hover:text-[#E6A44E]"
-              }`}
-              href="/services"
-            >
-              Services
+          <nav className="hidden md:flex items-center space-x-8 lg:space-x-10">
+            <Link className={navLinkClass} href="/services">
+              <span className="relative">
+                Services
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
+              </span>
             </Link>
-            <Link
-              className={`transition-colors text-sm font-medium ${
-                scrolled || !isHomePage ? "text-[#1B365D] hover:text-[#E6A44E]" : "text-white hover:text-[#E6A44E]"
-              }`}
-              href="/about"
-            >
-              About Us
+            <Link className={navLinkClass} href="/about">
+              <span className="relative">
+                About Us
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
+              </span>
             </Link>
-            <Link
-              className={`transition-colors text-sm font-medium ${
-                scrolled || !isHomePage ? "text-[#1B365D] hover:text-[#E6A44E]" : "text-white hover:text-[#E6A44E]"
-              }`}
-              href="/insights"
-            >
-              Insights
+            <Link className={navLinkClass} href="/insights">
+              <span className="relative">
+                Insights
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
+              </span>
             </Link>
-            <Link
-              className={`transition-colors text-sm font-medium ${
-                scrolled || !isHomePage ? "text-[#1B365D] hover:text-[#E6A44E]" : "text-white hover:text-[#E6A44E]"
-              }`}
-              href="/testimonials"
-            >
-              Testimonials
+            <Link className={navLinkClass} href="/testimonials">
+              <span className="relative">
+                Testimonials
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
+              </span>
             </Link>
-            <Button className="bg-[#E6A44E] hover:bg-[#E6A44E]/90 text-white ml-4" asChild>
+            <Button
+              className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-navy-950 font-semibold ml-4 shadow-glow hover:shadow-glow-lg transition-all duration-300"
+              asChild
+            >
               <Link href="/contact">Contact</Link>
             </Button>
+            <ThemeToggle />
           </nav>
 
           <Sheet>
@@ -107,52 +112,54 @@ export function Navigation() {
               <Button
                 variant="ghost"
                 size="icon"
-                className={`md:hidden ${
-                  scrolled || !isHomePage ? "text-[#1B365D] hover:bg-gray-100" : "text-white hover:bg-white/10"
-                }`}
+                className="md:hidden text-foreground hover:bg-foreground/10"
               >
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent className="bg-[#1B365D] text-white border-[#E6A44E]/20">
+            <SheetContent className="glass-card border-l border-border">
               <SheetHeader>
-                <SheetTitle className="text-white">Menu</SheetTitle>
-                <SheetDescription className="text-gray-300">
+                <SheetTitle className="text-foreground">Menu</SheetTitle>
+                <SheetDescription className="text-muted-foreground">
                   Navigate through our services and information.
                 </SheetDescription>
               </SheetHeader>
               <nav className="flex flex-col gap-4 mt-8">
                 <Link
-                  className="text-white hover:text-[#E6A44E] transition-colors py-2 border-b border-white/10"
+                  className="text-foreground/80 hover:text-amber-500 transition-colors py-3 border-b border-border"
                   href="/services"
                 >
                   Services
                 </Link>
                 <Link
-                  className="text-white hover:text-[#E6A44E] transition-colors py-2 border-b border-white/10"
+                  className="text-foreground/80 hover:text-amber-500 transition-colors py-3 border-b border-border"
                   href="/about"
                 >
                   About Us
                 </Link>
                 <Link
-                  className="text-white hover:text-[#E6A44E] transition-colors py-2 border-b border-white/10"
+                  className="text-foreground/80 hover:text-amber-500 transition-colors py-3 border-b border-border"
                   href="/insights"
                 >
                   Insights
                 </Link>
                 <Link
-                  className="text-white hover:text-[#E6A44E] transition-colors py-2 border-b border-white/10"
+                  className="text-foreground/80 hover:text-amber-500 transition-colors py-3 border-b border-border"
                   href="/testimonials"
                 >
                   Testimonials
                 </Link>
                 <Link
-                  className="text-white hover:text-[#E6A44E] transition-colors py-2 border-b border-white/10"
+                  className="text-foreground/80 hover:text-amber-500 transition-colors py-3 border-b border-border"
                   href="/contact"
                 >
                   Contact
                 </Link>
+                <div className="flex items-center justify-between py-3">
+                  <span className="text-foreground/80">Theme</span>
+                  <ThemeToggle />
+                </div>
               </nav>
             </SheetContent>
           </Sheet>
@@ -161,4 +168,3 @@ export function Navigation() {
     </motion.header>
   )
 }
-

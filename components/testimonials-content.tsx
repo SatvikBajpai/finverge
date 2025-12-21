@@ -1,8 +1,12 @@
 "use client"
 
+import { useState, useEffect, useCallback } from "react"
 import Image from "next/image"
-import { Star } from "lucide-react"
+import { Star, ChevronLeft, ChevronRight } from "lucide-react"
 import { motion } from "framer-motion"
+import useEmblaCarousel from "embla-carousel-react"
+import Autoplay from "embla-carousel-autoplay"
+import { Button } from "@/components/ui/button"
 
 const MotionDiv = motion.div
 
@@ -15,6 +19,11 @@ interface Testimonial {
 }
 
 export function TestimonialsContent() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" }, [
+    Autoplay({ delay: 5000, stopOnInteraction: false }),
+  ])
+  const [selectedIndex, setSelectedIndex] = useState(0)
+
   const testimonials: Testimonial[] = [
     {
       name: "Priya Patel",
@@ -42,47 +51,116 @@ export function TestimonialsContent() {
     },
   ]
 
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi])
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [emblaApi])
+
+  useEffect(() => {
+    if (!emblaApi) return
+    onSelect()
+    emblaApi.on("select", onSelect)
+    return () => {
+      emblaApi.off("select", onSelect)
+    }
+  }, [emblaApi, onSelect])
+
   return (
-    <>
-      <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
-        Client Success Stories
-      </h1>
-      <p className="text-xl text-muted-foreground text-center mb-12 max-w-3xl mx-auto">
-        Discover how FinVerge has transformed businesses and empowered financial success across industries.
-      </p>
-      <div className="grid gap-8 md:grid-cols-2">
-        {testimonials.map((testimonial, index) => (
-          <MotionDiv
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="flex items-center mb-4">
-                <Image
-                  src={testimonial.image || "/placeholder.svg"}
-                  alt={testimonial.name}
-                  width={60}
-                  height={60}
-                  className="rounded-full mr-4"
-                />
-                <div>
-                  <h3 className="font-semibold">{testimonial.name}</h3>
-                  <p className="text-sm text-gray-500">{testimonial.role}</p>
+    <div className="relative">
+      {/* Decorative orbs */}
+      <div className="absolute top-1/4 -left-32 w-80 h-80 bg-amber-400/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-amber-400/5 rounded-full blur-3xl" />
+
+      <MotionDiv
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-12 relative z-10"
+      >
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-foreground mb-4">
+          Client <span className="gradient-text">Success Stories</span>
+        </h1>
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          Discover how FinVerge has transformed businesses and empowered financial success across industries.
+        </p>
+      </MotionDiv>
+
+      {/* Carousel */}
+      <div className="relative z-10">
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="flex-[0_0_100%] min-w-0 md:flex-[0_0_50%] px-4">
+                <div className="glass-card p-8 h-full hover:border-amber-400/30 transition-all duration-500 group">
+                  <div className="flex items-center mb-6">
+                    <div className="relative">
+                      <Image
+                        src={testimonial.image || "/placeholder.svg"}
+                        alt={testimonial.name}
+                        width={60}
+                        height={60}
+                        className="rounded-full border-2 border-border"
+                      />
+                      <div className="absolute inset-0 rounded-full bg-amber-400/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="font-semibold text-foreground">{testimonial.name}</h3>
+                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    </div>
+                  </div>
+                  <div className="relative">
+                    <span className="absolute -top-4 -left-2 text-5xl text-amber-400/20 font-serif">"</span>
+                    <p className="text-muted-foreground mb-6 leading-relaxed pl-4">{testimonial.content}</p>
+                  </div>
+                  <div className="flex">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
                 </div>
               </div>
-              <p className="text-gray-700 mb-4">{testimonial.content}</p>
-              <div className="flex">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-current text-yellow-500" />
-                ))}
-              </div>
-            </div>
-          </MotionDiv>
-        ))}
+            ))}
+          </div>
+        </div>
+
+        {/* Navigation Controls */}
+        <div className="flex items-center justify-center gap-6 mt-8">
+          <Button
+            variant="glass"
+            size="icon"
+            onClick={scrollPrev}
+            className="rounded-full hover:border-amber-400/50 transition-all duration-300"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </Button>
+
+          {/* Dots */}
+          <div className="flex gap-2">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => emblaApi?.scrollTo(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === selectedIndex ? "bg-amber-400 w-8" : "bg-white/30 hover:bg-white/50"
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          <Button
+            variant="glass"
+            size="icon"
+            onClick={scrollNext}
+            className="rounded-full hover:border-amber-400/50 transition-all duration-300"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </Button>
+        </div>
       </div>
-    </>
+    </div>
   )
 }
-
