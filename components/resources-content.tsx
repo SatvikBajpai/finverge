@@ -8,6 +8,7 @@ import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useMediaQuery } from "@/hooks/use-media-query"
+import type { SheetResource } from "@/lib/googleSheets"
 
 const MotionDiv = motion.div
 
@@ -18,12 +19,21 @@ interface Resource {
   image?: string
 }
 
-export function InsightsContent() {
+interface InsightsContentProps {
+  resources: SheetResource[]
+}
+
+export function InsightsContent({ resources }: InsightsContentProps) {
   // Check if the screen is mobile-sized
   const isMobile = useMediaQuery("(max-width: 640px)")
 
-  // Organize resources by category
-  const handbooks: Resource[] = [
+  // Filter resources by category from Google Sheets
+  const sheetHandbooks = resources.filter(r => r.category === 'Handbook')
+  const sheetFinanceHacks = resources.filter(r => r.category === 'Finance Hack')
+  const sheetCommentaries = resources.filter(r => r.category === 'Commentary')
+
+  // Fallback handbooks if no data from sheets
+  const fallbackHandbooks: Resource[] = [
     {
       title: "FinVerge Advisors Handbook",
       description: "Comprehensive guide to our services and financial advisory approach.",
@@ -61,7 +71,7 @@ export function InsightsContent() {
     },
   ]
 
-  const financeHacks: Resource[] = [
+  const fallbackFinanceHacks: Resource[] = [
     {
       title: "Finance Hacks and How to Apply Them",
       description: "Practical financial hacks to optimize your business operations and growth.",
@@ -134,7 +144,7 @@ export function InsightsContent() {
     },
   ]
 
-  const commentaries: Resource[] = [
+  const fallbackCommentaries: Resource[] = [
     {
       title: "Budget Commentary FV Advisors",
       description:
@@ -144,6 +154,11 @@ export function InsightsContent() {
         "https://sjc.microlink.io/xJ20rqNUqIOTBanyzeD3jv-_37NVI59RnPTB5KtGQIY0ViWdID0CjiicOTtY3r84doaRFsg8Naz7d43WCV9tNA.jpeg",
     },
   ]
+
+  // Use Google Sheets data if available, otherwise use fallback
+  const handbooks = sheetHandbooks.length > 0 ? sheetHandbooks : fallbackHandbooks
+  const financeHacks = sheetFinanceHacks.length > 0 ? sheetFinanceHacks : fallbackFinanceHacks
+  const commentaries = sheetCommentaries.length > 0 ? sheetCommentaries : fallbackCommentaries
 
   return (
     <>
