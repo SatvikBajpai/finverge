@@ -38,3 +38,6 @@ coverage/
 
 # Ignore public placeholder images if not needed
 public/placeholder-*
+
+# Email signature files
+email_signature/

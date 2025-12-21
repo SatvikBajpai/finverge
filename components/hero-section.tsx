@@ -116,7 +116,7 @@ export function HeroSection() {
                 <span className="gradient-text">In Growth</span>
               </motion.h1>
               <motion.p
-                className="text-lg md:text-xl text-white/70 mb-10 max-w-2xl leading-relaxed"
+                className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
