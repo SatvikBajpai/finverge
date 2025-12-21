@@ -22,10 +22,10 @@ export function CTASection() {
           viewport={{ once: true }}
           className="glass-card p-12 md:p-16 text-center max-w-4xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-6">
             Ready to Transform Your <span className="gradient-text">Business</span>?
           </h2>
-          <p className="mx-auto max-w-[700px] text-white/70 text-lg md:text-xl mb-10 leading-relaxed">
+          <p className="mx-auto max-w-[700px] text-muted-foreground text-lg md:text-xl mb-10 leading-relaxed">
             Partner with FinVerge for comprehensive financial solutions tailored to your growth needs.
           </p>
           <Button variant="amber" size="lg" asChild>
