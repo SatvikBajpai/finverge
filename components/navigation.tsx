@@ -8,7 +8,6 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Menu } from "lucide-react"
 import { Logo } from "@/components/ui/logo"
 import { motion } from "framer-motion"
-import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
@@ -104,7 +103,6 @@ export function Navigation() {
             >
               <Link href="/contact">Contact</Link>
             </Button>
-            <ThemeToggle />
           </nav>
 
           <Sheet>
@@ -156,10 +154,6 @@ export function Navigation() {
                 >
                   Contact
                 </Link>
-                <div className="flex items-center justify-between py-3">
-                  <span className="text-foreground/80">Theme</span>
-                  <ThemeToggle />
-                </div>
               </nav>
             </SheetContent>
           </Sheet>
