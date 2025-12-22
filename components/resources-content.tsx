@@ -247,28 +247,33 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <Card className="h-full flex flex-col overflow-hidden glass-card border-white/10 hover:border-amber-400/30 transition-all duration-500 group">
-        <div className="relative h-48 w-full overflow-hidden">
-          <Image
-            src={resource.image || "/placeholder.svg?height=200&width=300"}
-            alt={resource.title}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/40 to-transparent flex items-end p-4">
-            <FileText className="h-8 w-8 text-white opacity-80" />
+        {resource.image && (
+          <div className="relative h-48 w-full overflow-hidden">
+            <Image
+              src={resource.image}
+              alt={resource.title}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/40 to-transparent flex items-end p-4">
+              <FileText className="h-8 w-8 text-white opacity-80" />
+            </div>
           </div>
-        </div>
-        <CardHeader>
-          <CardTitle className="text-xl text-foreground">{resource.title}</CardTitle>
+        )}
+        <CardHeader className={resource.image ? "" : "pt-8"}>
+          <CardTitle className="text-xl text-foreground flex items-start gap-2">
+            <FileText className="h-5 w-5 text-amber-400 flex-shrink-0 mt-1" />
+            {resource.title}
+          </CardTitle>
         </CardHeader>
         <CardContent className="flex-grow">
           <p className="text-muted-foreground mb-4">{resource.description}</p>
         </CardContent>
         <div className="p-4 pt-0 mt-auto">
           <Button variant="glass" className="w-full" asChild>
-            <Link href={resource.link} target="_blank" rel="noopener noreferrer">
+            <a href={resource.link} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="mr-2 h-4 w-4" /> View Resource
-            </Link>
+            </a>
           </Button>
         </div>
       </Card>
