@@ -25,7 +25,7 @@ export function AboutPageContent() {
               transition={{ duration: 0.6 }}
               className="space-y-6"
             >
-              <h2 className="text-3xl font-bold tracking-tight text-white">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground">
                 Our <span className="gradient-text">Story</span>
               </h2>
               <p className="text-muted-foreground leading-relaxed">
@@ -170,7 +170,7 @@ export function AboutPageContent() {
               </div>
             </div>
             <div className="w-full md:w-2/3">
-              <h2 className="text-2xl font-bold tracking-tight text-white mb-2">About the <span className="gradient-text">Founder</span></h2>
+              <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">About the <span className="gradient-text">Founder</span></h2>
               <h3 className="text-lg font-semibold text-amber-400 mb-4">Vishal Manwani, CA</h3>
               <p className="text-muted-foreground mb-3 leading-relaxed">
                 Vishal Manwani is a Chartered Accountant and seasoned finance professional with over five years of experience across diverse industries, including e-commerce, agritech, and hospitality. His expertise spans financial planning and analysis, cash flow management, compliance, and driving automation in finance operations.
@@ -192,7 +192,7 @@ export function AboutPageContent() {
               transition={{ duration: 0.6 }}
               className="glass-card p-10"
             >
-              <h2 className="text-3xl font-bold tracking-tight text-white text-center mb-8">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground text-center mb-8">
                 Our <span className="gradient-text">Mission</span>
               </h2>
               <p className="text-muted-foreground text-center text-lg leading-relaxed">
@@ -217,7 +217,7 @@ export function AboutPageContent() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="glass-card p-10"
             >
-              <h2 className="text-3xl font-bold tracking-tight text-white text-center mb-8">
+              <h2 className="text-3xl font-bold tracking-tight text-foreground text-center mb-8">
                 Our <span className="gradient-text">Vision</span>
               </h2>
               <p className="text-muted-foreground text-center text-lg leading-relaxed">
@@ -243,7 +243,7 @@ export function AboutPageContent() {
         <div className="absolute inset-0 gradient-section" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground mb-4">
             Our <span className="gradient-text">Presence</span>
           </h2>
           <p className="text-muted-foreground mb-10 text-lg">

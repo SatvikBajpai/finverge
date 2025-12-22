@@ -19,7 +19,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         // New modern variants
-        glass: "glass-light text-white hover:bg-white/15 border border-white/10",
+        glass: "glass-light text-foreground hover:bg-accent/20 border border-border",
         amber: "bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-navy-950 font-semibold shadow-glow hover:shadow-glow-lg",
         amberOutline: "border-2 border-amber-400/50 text-amber-400 hover:bg-amber-400/10 hover:border-amber-400",
         glassWhite: "glass-light text-white hover:bg-white/20 border border-white/20 font-medium",
