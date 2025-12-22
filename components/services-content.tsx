@@ -44,7 +44,7 @@ export function ServicesContent({ services }: ServicesContentProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl text-white mb-6">
+            <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl text-foreground mb-6">
               Comprehensive <span className="gradient-text">Financial Services</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed">
@@ -71,7 +71,7 @@ export function ServicesContent({ services }: ServicesContentProps) {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Our <span className="gradient-text">Services</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
@@ -106,7 +106,7 @@ export function ServicesContent({ services }: ServicesContentProps) {
                   </CardHeader>
                   <CardContent className="p-6 flex-grow flex flex-col justify-between">
                     <div>
-                      <CardTitle className="text-xl font-semibold text-white mb-3">{service.title}</CardTitle>
+                      <CardTitle className="text-xl font-semibold text-foreground mb-3">{service.title}</CardTitle>
                       <p className="text-muted-foreground leading-relaxed">{service.description}</p>
                     </div>
                   </CardContent>
@@ -136,7 +136,7 @@ export function ServicesContent({ services }: ServicesContentProps) {
             viewport={{ once: true }}
             className="glass-card p-12 md:p-16 max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
               Ready to Transform Your <span className="gradient-text">Financial Strategy</span>?
             </h2>
             <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
