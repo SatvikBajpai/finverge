@@ -141,7 +141,7 @@ export default function ContactPage() {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-white mb-4">
+              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-foreground mb-4">
                 Get in <span className="gradient-text">Touch</span>
               </h1>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
@@ -166,7 +166,7 @@ export default function ContactPage() {
               >
                 <Card className="glass-card border-border">
                   <CardContent className="p-8">
-                    <h2 className="text-2xl font-bold text-white mb-8">Send Us a <span className="gradient-text">Message</span></h2>
+                    <h2 className="text-2xl font-bold text-foreground mb-8">Send Us a <span className="gradient-text">Message</span></h2>
 
                     {submitStatus.type && (
                       <div
@@ -242,7 +242,7 @@ export default function ContactPage() {
                             value={formData.firstName}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className={`bg-muted/30 border-border text-white placeholder:text-muted-foreground/60 focus:border-amber-400/50 focus:ring-amber-400/20 ${
+                            className={`bg-muted/30 border-border text-foreground placeholder:text-muted-foreground/60 focus:border-amber-400/50 focus:ring-amber-400/20 ${
                               touched.firstName && errors.firstName ? "border-red-400/50" : ""
                             }`}
                           />
@@ -264,7 +264,7 @@ export default function ContactPage() {
                             value={formData.lastName}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className={`bg-muted/30 border-border text-white placeholder:text-muted-foreground/60 focus:border-amber-400/50 focus:ring-amber-400/20 ${
+                            className={`bg-muted/30 border-border text-foreground placeholder:text-muted-foreground/60 focus:border-amber-400/50 focus:ring-amber-400/20 ${
                               touched.lastName && errors.lastName ? "border-red-400/50" : ""
                             }`}
                           />
@@ -288,7 +288,7 @@ export default function ContactPage() {
                           value={formData.email}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          className={`bg-muted/30 border-border text-white placeholder:text-muted-foreground/60 focus:border-amber-400/50 focus:ring-amber-400/20 ${
+                          className={`bg-muted/30 border-border text-foreground placeholder:text-muted-foreground/60 focus:border-amber-400/50 focus:ring-amber-400/20 ${
                             touched.email && errors.email ? "border-red-400/50" : ""
                           }`}
                         />
@@ -311,7 +311,7 @@ export default function ContactPage() {
                           value={formData.phone}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          className={`bg-muted/30 border-border text-white placeholder:text-muted-foreground/60 focus:border-amber-400/50 focus:ring-amber-400/20 ${
+                          className={`bg-muted/30 border-border text-foreground placeholder:text-muted-foreground/60 focus:border-amber-400/50 focus:ring-amber-400/20 ${
                             touched.phone && errors.phone ? "border-red-400/50" : ""
                           }`}
                         />
@@ -327,7 +327,7 @@ export default function ContactPage() {
                           Message
                         </label>
                         <Textarea
-                          className={`min-h-[150px] bg-muted/30 border-border text-white placeholder:text-muted-foreground/60 focus:border-amber-400/50 focus:ring-amber-400/20 ${
+                          className={`min-h-[150px] bg-muted/30 border-border text-foreground placeholder:text-muted-foreground/60 focus:border-amber-400/50 focus:ring-amber-400/20 ${
                             touched.message && errors.message ? "border-red-400/50" : ""
                           }`}
                           id="message"
@@ -363,7 +363,7 @@ export default function ContactPage() {
               >
                 <Card className="glass-card border-border h-full">
                   <CardContent className="p-8 flex flex-col h-full">
-                    <h2 className="text-2xl font-bold text-white mb-6">Company <span className="gradient-text">Brochure</span></h2>
+                    <h2 className="text-2xl font-bold text-foreground mb-6">Company <span className="gradient-text">Brochure</span></h2>
 
                     <div className="flex-grow flex flex-col justify-center">
                       <p className="text-muted-foreground mb-8 leading-relaxed">
