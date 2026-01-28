@@ -3,6 +3,7 @@ import "./globals.css"
 import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import type { ReactNode } from "react"
+import type { Metadata } from "next"
 import { Linkedin, Mail, MapPin } from "lucide-react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
@@ -11,15 +12,109 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata = {
-  title: "FinVerge - Your Financial Partners In Growth",
-  description: "Empowering startups and SMEs with strategic financial solutions",
-    generator: 'v0.dev'
+export const metadata: Metadata = {
+  title: {
+    default: "FinVerge Advisors - Financial Advisory for Startups & SMEs | Delhi NCR",
+    template: "%s | FinVerge Advisors"
+  },
+  description: "FinVerge Advisors provides strategic financial solutions for startups and SMEs in India. Services include fundraising, CFO services, financial modeling, compliance, and business advisory. Based in Delhi NCR.",
+  keywords: [
+    "startup financial advisory",
+    "CFO services India",
+    "fundraising consultants",
+    "financial modeling",
+    "startup compliance",
+    "SME advisory",
+    "business financial planning",
+    "Delhi NCR financial advisors",
+    "startup funding India",
+    "virtual CFO services"
+  ],
+  authors: [{ name: "FinVerge Advisors" }],
+  creator: "FinVerge Advisors",
+  publisher: "FinVerge Advisors",
+  metadataBase: new URL("https://finvergeadvisors.com"),
+  alternates: {
+    canonical: "https://finvergeadvisors.com",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://finvergeadvisors.com",
+    siteName: "FinVerge Advisors",
+    title: "FinVerge Advisors - Your Financial Partners In Growth",
+    description: "Empowering startups and SMEs with strategic financial solutions. Expert fundraising, CFO services, and business advisory in Delhi NCR.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "FinVerge Advisors - Financial Advisory Services",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FinVerge Advisors - Financial Advisory for Startups & SMEs",
+    description: "Empowering startups and SMEs with strategic financial solutions. Expert fundraising, CFO services, and business advisory.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // Add your Google Search Console verification code here
+    // google: "your-verification-code",
+  },
+}
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FinancialService",
+  "name": "FinVerge Advisors",
+  "description": "Strategic financial advisory services for startups and SMEs in India",
+  "url": "https://finvergeadvisors.com",
+  "logo": "https://finvergeadvisors.com/og-image.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Delhi NCR",
+    "addressCountry": "IN"
+  },
+  "email": "contact@finvergeadvisors.com",
+  "sameAs": [
+    "https://www.linkedin.com/company/finvergeadvisors"
+  ],
+  "serviceType": [
+    "Financial Advisory",
+    "CFO Services",
+    "Fundraising Consulting",
+    "Financial Modeling",
+    "Business Compliance",
+    "Startup Advisory"
+  ],
+  "areaServed": {
+    "@type": "Country",
+    "name": "India"
+  }
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${inter.className} min-h-screen`}>
         <ThemeProvider
           attribute="class"

@@ -1,3 +1,10 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "FinVerge Advisors privacy policy - how we collect, use, and protect your personal information.",
+}
+
 export default function PrivacyPolicyPage() {
   return (
     <div className="flex flex-col min-h-screen pt-16">

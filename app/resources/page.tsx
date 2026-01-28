@@ -1,5 +1,15 @@
 import { InsightsContent } from "@/components/resources-content"
 import { fetchSheetResources, fallbackResources } from "@/lib/googleSheets"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Resources",
+  description: "Free financial resources, guides, and insights for startups and SMEs. Budget analysis, compliance guides, funding strategies, and more.",
+  openGraph: {
+    title: "Resources | FinVerge Advisors",
+    description: "Free financial resources, guides, and insights for startups and SMEs.",
+  },
+}
 
 export const revalidate = 60 // Revalidate every 60 seconds
 

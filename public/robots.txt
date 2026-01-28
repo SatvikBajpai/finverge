@@ -1,0 +1,9 @@
+# robots.txt for finvergeadvisors.com
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://finvergeadvisors.com/sitemap.xml
+
+# Disallow admin or private paths (if any)
+Disallow: /api/

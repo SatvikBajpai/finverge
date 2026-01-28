@@ -1,4 +1,14 @@
 import { AboutPageContent } from "@/components/about-page-content"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description: "Learn about FinVerge Advisors - our mission, values, and commitment to empowering startups and SMEs with strategic financial solutions in India.",
+  openGraph: {
+    title: "About FinVerge Advisors",
+    description: "Your trusted partner in financial growth and strategy. Learn about our mission and values.",
+  },
+}
 
 export default function AboutPage() {
   // Add padding-top to the main container to account for the fixed navbar

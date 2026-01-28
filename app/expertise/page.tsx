@@ -1,4 +1,14 @@
 import { ExpertiseContent } from "@/components/expertise-content"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Our Expertise",
+  description: "Explore FinVerge's expertise in financial advisory, startup funding, compliance, business strategy, and financial modeling for Indian startups and SMEs.",
+  openGraph: {
+    title: "Our Expertise | FinVerge Advisors",
+    description: "Comprehensive financial solutions tailored to your business needs.",
+  },
+}
 
 export default function ExpertisePage() {
   // Add padding-top to the main container to account for the fixed navbar

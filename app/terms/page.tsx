@@ -1,3 +1,10 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description: "FinVerge Advisors terms of service - guidelines for using our website and services.",
+}
+
 export default function TermsPage() {
   return (
     <div className="flex flex-col min-h-screen pt-16">
