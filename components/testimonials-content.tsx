@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import Image from "next/image"
 import { Star, ChevronLeft, ChevronRight } from "lucide-react"
 import { motion } from "framer-motion"
 import useEmblaCarousel from "embla-carousel-react"
@@ -14,7 +13,6 @@ interface Testimonial {
   name: string
   role: string
   content: string
-  image: string
   rating: number
 }
 
@@ -30,7 +28,6 @@ export function TestimonialsContent() {
       role: "Founder, EcoGreen Startups",
       content:
         "The team at FinVerge provided invaluable support during our company incorporation and initial funding rounds. Their expertise in startup finances is unparalleled.",
-      image: "/placeholder.svg?height=100&width=100",
       rating: 5,
     },
     {
@@ -38,7 +35,6 @@ export function TestimonialsContent() {
       role: "CFO, Global Logistics Inc.",
       content:
         "FinVerge's business insights and MIS reporting have transformed how we view our financial data. Their actionable insights have directly contributed to our bottom line.",
-      image: "/placeholder.svg?height=100&width=100",
       rating: 5,
     },
     {
@@ -46,7 +42,6 @@ export function TestimonialsContent() {
       role: "Founder, Dairy Tech Startup",
       content:
         "Finverge Advisors transformed our fundraising journey. After a year of rejections, their team built robust financial models and crafted a compelling growth narrative that finally convinced banks of our potential. Thanks to their expertise, we secured $500K in working capital at affordable rates with just 40% collateral. This funding has been a game-changer for our dairy tech startup, enabling us to scale and invest in growth. We highly recommend Finverge to any startup seeking strategic financial guidance.",
-      image: "/placeholder.svg?height=100&width=100",
       rating: 5,
     },
   ]
@@ -95,21 +90,9 @@ export function TestimonialsContent() {
             {testimonials.map((testimonial, index) => (
               <div key={index} className="flex-[0_0_100%] min-w-0 md:flex-[0_0_50%] px-4">
                 <div className="glass-card p-8 h-full hover:border-amber-400/30 transition-all duration-500 group">
-                  <div className="flex items-center mb-6">
-                    <div className="relative">
-                      <Image
-                        src={testimonial.image || "/placeholder.svg"}
-                        alt={testimonial.name}
-                        width={60}
-                        height={60}
-                        className="rounded-full border-2 border-border"
-                      />
-                      <div className="absolute inset-0 rounded-full bg-amber-400/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                    <div className="ml-4">
-                      <h3 className="font-semibold text-foreground">{testimonial.name}</h3>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                    </div>
+                  <div className="mb-6">
+                    <h3 className="font-semibold text-foreground">{testimonial.name}</h3>
+                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                   </div>
                   <div className="relative">
                     <span className="absolute -top-4 -left-2 text-5xl text-amber-400/20 font-serif">"</span>

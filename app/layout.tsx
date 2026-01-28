@@ -56,17 +56,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                       <Mail className="h-4 w-4 mr-3 text-amber-500" />
                       <p>contact@finvergeadvisors.com</p>
                     </div>
-                    <div className="flex items-center text-sm text-muted-foreground">
-                      <Linkedin className="h-4 w-4 mr-3 text-amber-500" />
-                      <Link
-                        href="https://www.linkedin.com/company/finvergeadvisors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-amber-500 transition-colors"
-                      >
-                        linkedin.com/company/finvergeadvisors
-                      </Link>
-                    </div>
+                    <Link
+                      href="https://www.linkedin.com/company/finvergeadvisors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-sm text-muted-foreground hover:text-amber-500 transition-colors group"
+                    >
+                      <div className="glass-light p-2 rounded-full mr-3 group-hover:bg-amber-400/20 transition-all duration-300">
+                        <Linkedin className="h-4 w-4 text-amber-500" />
+                      </div>
+                      linkedin.com/company/finvergeadvisors
+                    </Link>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-foreground">Legal</h4>
@@ -85,22 +85,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   </div>
                 </div>
                 <div className="mt-10 pt-8 border-t border-border">
-                  <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <p className="text-xs text-muted-foreground">© 2026 FinVerge Advisors. All rights reserved.</p>
-                    <div className="flex space-x-4">
-                      <Link
-                        href="https://www.linkedin.com/company/finvergeadvisors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group transition-all duration-300"
-                        aria-label="LinkedIn"
-                      >
-                        <div className="glass-light p-2.5 rounded-full group-hover:bg-amber-400/20 transition-all duration-300 group-hover:shadow-glow">
-                          <Linkedin className="h-5 w-5 text-foreground/70 group-hover:text-amber-500 transition-colors" />
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
+                  <p className="text-xs text-muted-foreground text-center">© 2026 FinVerge Advisors. All rights reserved.</p>
                 </div>
               </div>
             </footer>
