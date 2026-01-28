@@ -86,7 +86,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 </div>
                 <div className="mt-10 pt-8 border-t border-border">
                   <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <p className="text-xs text-muted-foreground">© 2025 FinVerge Advisors. All rights reserved.</p>
+                    <p className="text-xs text-muted-foreground">© 2026 FinVerge Advisors. All rights reserved.</p>
                     <div className="flex space-x-4">
                       <Link
                         href="https://www.linkedin.com/company/finvergeadvisors"

@@ -22,10 +22,6 @@ yarn-error.log*
 .vscode/
 .idea/
 
-# Backup and mirror folders
-finverge-backup/
-finverge-mirror/
-
 # Output
 out/
 
@@ -35,10 +31,3 @@ coverage/
 # Misc
 *.local
 *.swp
-
-# Ignore public placeholder images if not needed
-public/placeholder-*
-
-# Email signature files
-email_signature/
-.env.local
