@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     description: "Empowering startups and SMEs with strategic financial solutions. Expert fundraising, CFO services, and business advisory in Delhi NCR.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og.png",
         width: 1200,
         height: 630,
         alt: "FinVerge Advisors - Financial Advisory Services",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FinVerge Advisors - Financial Advisory for Startups & SMEs",
     description: "Empowering startups and SMEs with strategic financial solutions. Expert fundraising, CFO services, and business advisory.",
-    images: ["/og-image.png"],
+    images: ["/og.png"],
   },
   robots: {
     index: true,
@@ -81,7 +81,7 @@ const jsonLd = {
   "name": "FinVerge Advisors",
   "description": "Strategic financial advisory services for startups and SMEs in India",
   "url": "https://finvergeadvisors.com",
-  "logo": "https://finvergeadvisors.com/og-image.png",
+  "logo": "https://finvergeadvisors.com/og.png",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Delhi NCR",
